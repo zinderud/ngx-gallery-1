@@ -182,7 +182,7 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
      this.galleryRef.set(event.index);
      this.thumbClick.emit(event);
      this.galleryRef.thumbClick.next(event.index);
-    console.log("event:", event)
+    console.log('event:', event)
   }
 
   onError(err: GalleryError) {
