@@ -44,7 +44,7 @@ export class GalleryCoreComponent {
   @Input() config: GalleryConfig;
   @Output() action = new EventEmitter<string | number>();
   @Output() itemClick = new EventEmitter<number>();
-  @Output() thumbClick = new EventEmitter<number>();
+  @Output() thumbClick = new EventEmitter<any>();
   @Output() error = new EventEmitter<GalleryError>();
 
   /** Set thumbnails position */

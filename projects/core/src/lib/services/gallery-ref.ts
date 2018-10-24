@@ -20,7 +20,8 @@ export class GalleryRef {
   readonly itemClick = new Subject<number>();
 
   /** Stream that emits on thumbnail click */
-  readonly thumbClick = new Subject<number>();
+ /*  optional select ımages only two */
+  readonly thumbClick = new Subject<any>();
 
   /** Stream that emits on an error occurs */
   readonly error = new Subject<GalleryError>();

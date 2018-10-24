@@ -36,7 +36,7 @@ declare const Hammer: any;
                        [currIndex]="state.currIndex"
                        [index]="i"
                        [tapClickDisabled]="config.disableThumb"
-                       (tapClick)="thumbClick.emit(i)"
+                       (tapClick)="thumbClick.emit({index:i,data:item.data})"
                        (error)="error.emit({itemIndex: i, error: $event})"></gallery-thumb>
       </div>
     </div>
@@ -66,7 +66,7 @@ export class GalleryThumbsComponent implements OnInit, OnChanges, OnDestroy {
   @Output() action = new EventEmitter<string | number>();
 
   /** Stream that emits when thumb is clicked */
-  @Output() thumbClick = new EventEmitter<number>();
+  @Output() thumbClick = new EventEmitter<any>();
 
   /** Stream that emits when an error occurs */
   @Output() error = new EventEmitter<GalleryError>();

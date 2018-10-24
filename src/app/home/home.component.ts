@@ -7,7 +7,7 @@ import { GalleryItem, ImageItem } from '@ngx-gallery/core';
     <div class="basic-container">
       <h2>Basic Example</h2>
 
-      <gallery #gallery id="basic-test" fluid [items]="items" thumbPosition="top" thumbMode="free" (error)="onError($event)">
+      <gallery #gallery id="basic-test" fluid [items]="items" thumbPosition="top"   (thumbClick)="onThumbClick($event)"  thumbMode="free" (error)="onError($event)">
       </gallery>
 
       <button mat-button (click)="gallery.play()">Play</button>
@@ -48,6 +48,9 @@ export class HomeComponent implements OnInit {
 
   onError(e) {
     console.log('Test error', e);
+  }
+  onThumbClick(e) {
+   console.log("event home",e)
   }
 
 }

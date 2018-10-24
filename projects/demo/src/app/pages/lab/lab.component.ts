@@ -21,10 +21,10 @@ export class LabComponent implements OnInit {
   thumbModes = ['strict', 'free'];
   slidingDirections = ['vertical', 'horizontal'];
 
-  player$ = new BehaviorSubject<any>({active: false});
-  itemClick$ = new BehaviorSubject<any>({active: false});
-  thumbClick$ = new BehaviorSubject<any>({active: false});
-  indexChange$ = new BehaviorSubject<any>({active: false});
+  player$ = new BehaviorSubject<any>({ active: false });
+  itemClick$ = new BehaviorSubject<any>({ active: false });
+  thumbClick$ = new BehaviorSubject<any>({ active: false });
+  indexChange$ = new BehaviorSubject<any>({ active: false });
 
   constructor(pixabay: Pixabay) {
     this.photos$ = pixabay.getImages('cars');
@@ -59,34 +59,36 @@ export class LabComponent implements OnInit {
   }
 
   onPlayer(e) {
-    this.updateEvent(this.player$, {active: true, e});
+    this.updateEvent(this.player$, { active: true, e });
     setTimeout(() => {
-      this.updateEvent(this.player$, {active: false});
+      this.updateEvent(this.player$, { active: false });
     }, 800);
   }
 
   onItemClick(e) {
-    this.updateEvent(this.itemClick$, {active: true, e});
+    this.updateEvent(this.itemClick$, { active: true, e });
     setTimeout(() => {
-      this.updateEvent(this.itemClick$, {active: false});
+      this.updateEvent(this.itemClick$, { active: false });
     }, 800);
   }
 
   onThumbClick(e) {
-    this.updateEvent(this.thumbClick$, {active: true, e});
+    this.updateEvent(this.thumbClick$, { active: true, e.index });
+
     setTimeout(() => {
-      this.updateEvent(this.thumbClick$, {active: false});
+      this.updateEvent(this.thumbClick$, { active: false });
     }, 800);
+    console.log("event: lab", e)
   }
 
   onIndexChange(e) {
-    this.updateEvent(this.indexChange$, {active: true, e});
+    this.updateEvent(this.indexChange$, { active: true, e });
     setTimeout(() => {
-      this.updateEvent(this.indexChange$, {active: false});
+      this.updateEvent(this.indexChange$, { active: false });
     }, 800);
   }
 
   private updateEvent(eventState: BehaviorSubject<any>, args) {
-    eventState.next({...eventState.value, ...args});
+    eventState.next({ ...eventState.value, ...args });
   }
 }

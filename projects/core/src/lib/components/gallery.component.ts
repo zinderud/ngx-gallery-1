@@ -34,7 +34,7 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
 
   galleryRef: GalleryRef;
   @Input() id: string;
-  @Input() items: GalleryItem [];
+  @Input() items: GalleryItem[];
   @Input() nav: boolean = this._gallery.config.nav;
   @Input() dots: boolean = this._gallery.config.dots;
   @Input() loop: boolean = this._gallery.config.loop;
@@ -65,7 +65,7 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
   @Input() skipInitConfig = false;
 
   @Output() itemClick = new EventEmitter<number>();
-  @Output() thumbClick = new EventEmitter<number>();
+  @Output() thumbClick = new EventEmitter<string[]>();
   @Output() playingChange = new EventEmitter<GalleryState>();
   @Output() indexChange = new EventEmitter<GalleryState>();
   @Output() itemsChange = new EventEmitter<GalleryState>();
@@ -177,10 +177,12 @@ export class GalleryComponent implements OnInit, OnChanges, OnDestroy {
     this.galleryRef.itemClick.next(i);
   }
 
-  onThumbClick(i: number) {
-    this.galleryRef.set(i);
-    this.thumbClick.emit(i);
-    this.galleryRef.thumbClick.next(i);
+  onThumbClick(event) {
+    // todo  two images add ;
+     this.galleryRef.set(event.index);
+     this.thumbClick.emit(event);
+     this.galleryRef.thumbClick.next(event.index);
+    console.log("event:", event)
   }
 
   onError(err: GalleryError) {
